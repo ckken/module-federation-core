@@ -26,6 +26,23 @@
       "types": "./dist/types/ssr-runtime/index.d.ts",
       "default": "./dist/esm/ssr-runtime/index.js"
     },
+    "./data-loader": {
+      "types": "./dist/types/runtime/dataLoader/plugin.d.ts",
+      "default": "./dist/esm/runtime/dataLoader/plugin.js"
+    },
+    "./data-loader-inject-assets": {
+      "types": "./dist/types/runtime/dataLoader/plugin-inject-assets.d.ts",
+      "default": "./dist/esm/runtime/dataLoader/plugin-inject-assets.js"
+    },
+    "./data-loader-server": {
+      "types": "./dist/types/cli/server/dataLoaderPlugin.d.ts",
+      "default": "./dist/cjs/cli/server/dataLoaderPlugin.js"
+    },
+    "./data-loader-plugin": {
+      "import": "./dist/esm/cli/dataLoader/plugin.js",
+      "require": "./dist/cjs/cli/dataLoader/plugin.js",
+      "types": "./dist/types/cli/dataLoader/plugin.d.ts"
+    },
     "./config-plugin": {
       "import": "./dist/esm/cli/configPlugin.js",
       "require": "./dist/cjs/cli/configPlugin.js",
@@ -50,6 +67,18 @@
       ],
       "ssr-plugin": [
         "./dist/types/cli/ssrPlugin.d.ts"
+      ],
+      "data-loader-plugin": [
+        "./dist/types/cli/dataLoader/plugin.d.ts"
+      ],
+      "data-loader": [
+        "./dist/types/runtime/dataLoader/plugin.d.ts"
+      ],
+      "data-loader-inject-assets": [
+        "./dist/types/runtime/dataLoader/plugin-inject-assets.d.ts"
+      ],
+      "data-loader-server": [
+        "./dist/types/cli/server/dataLoaderPlugin.d.ts"
       ]
     }
   },
@@ -75,9 +104,13 @@
     "@modern-js/runtime": "2.60.3",
     "@modern-js/tsconfig": "2.60.3",
     "@module-federation/manifest": "workspace:*",
-    "@types/hoist-non-react-statics": "3.3.5"
+    "@types/hoist-non-react-statics": "3.3.5",
+    "@types/babel__traverse": "7.20.6",
+    "@types/babel__generator": "7.6.8",
+    "@modern-js/server-core": "2.60.3"
   },
   "peerDependencies": {
+    "@modern-js/runtime": "^2.60.2",
     "react": ">=17",
     "react-dom": ">=17",
     "typescript": "^4.9.0 || ^5.0.0",
