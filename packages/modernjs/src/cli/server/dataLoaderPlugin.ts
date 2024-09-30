@@ -39,11 +39,10 @@ export default ({
       prepare() {
         const { middlewares } = api.useAppContext();
         middlewares.push({
-          name: 'a',
+          name: 'MFPatchRouteMiddleWare',
           handler: async (c, next) => {
             const serverManifest = c.get('serverManifest');
             const { loaderBundles, nestedRoutesJson } = serverManifest;
-            console.log('server plugin ', isHandled, loaderBundles);
             if (isHandled && !globalThis.FORCE_MF_REFRESH) {
               await next();
             } else {

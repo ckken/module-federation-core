@@ -1,6 +1,6 @@
 const Index = () => (
   <div className="container-box">
-    <h1>entry two page</h1>
+    <h2>entry two page</h2>
   </div>
 );
 

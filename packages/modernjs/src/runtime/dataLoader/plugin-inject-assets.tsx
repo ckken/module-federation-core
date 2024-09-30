@@ -29,7 +29,6 @@ export const ssrDataLoaderInjectAssetsPlugin = ({
           const AppWrapper = (props: any) => {
             const instance = getInstance();
             if (!instance || !instance.options.remotes.length) {
-              console.log('plugin-mf-data-loader-inject-assets no instance!');
               return <>{props.children}</>;
             }
             const context = useContext(RuntimeReactContext);
@@ -55,10 +54,6 @@ export const ssrDataLoaderInjectAssetsPlugin = ({
                 }),
               );
             });
-            console.log(
-              'plugin-mf-data-loader-inject-assets has assets: ',
-              assets,
-            );
 
             return (
               <>
