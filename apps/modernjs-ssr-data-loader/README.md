@@ -27,3 +27,4 @@ open http://localhost:3062/entry-one/nested-routes/pathname
 # CSR
 open http://localhost:3062/entry-two
 ```
+/Users/bytedance/outter/universe/apps/modernjs-ssr-data-loader/sub-provider/node_modules/.federation/tsconfig.fb3ee3c97a41fc15144d1061cf9569eb.json
