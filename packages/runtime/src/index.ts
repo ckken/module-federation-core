@@ -5,7 +5,7 @@ import {
   setGlobalFederationInstance,
   setGlobalFederationConstructor,
 } from './global';
-import { UserOptions, FederationRuntimePlugin } from './type';
+import type { UserOptions, FederationRuntimePlugin } from './type';
 import { assert } from './utils/logger';
 
 export { FederationHost } from './core';
@@ -30,14 +30,13 @@ export function init(options: UserOptions): FederationHost {
     FederationInstance = new FederationConstructor(options);
     setGlobalFederationInstance(FederationInstance);
     return FederationInstance;
-  } else {
-    // Merge options
-    instance.initOptions(options);
-    if (!FederationInstance) {
-      FederationInstance = instance;
-    }
-    return instance;
   }
+  // Merge options
+  instance.initOptions(options);
+  if (!FederationInstance) {
+    FederationInstance = instance;
+  }
+  return instance;
 }
 
 export function loadRemote<T>(
