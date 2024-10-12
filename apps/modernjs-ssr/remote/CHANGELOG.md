@@ -1,5 +1,47 @@
 # modernjs-ssr-remote
 
+## 0.1.32
+
+### Patch Changes
+
+- @module-federation/modern-js@0.6.10
+
+## 0.1.31
+
+### Patch Changes
+
+- @module-federation/modern-js@0.6.9
+
+## 0.1.30
+
+### Patch Changes
+
+- @module-federation/modern-js@0.6.8
+
+## 0.1.29
+
+### Patch Changes
+
+- @module-federation/modern-js@0.6.7
+
+## 0.1.28
+
+### Patch Changes
+
+- @module-federation/modern-js@0.6.6
+
+## 0.1.27
+
+### Patch Changes
+
+- @module-federation/modern-js@0.6.5
+
+## 0.1.26
+
+### Patch Changes
+
+- @module-federation/modern-js@0.6.4
+
 ## 0.1.25
 
 ### Patch Changes

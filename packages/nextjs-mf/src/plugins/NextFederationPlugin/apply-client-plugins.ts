@@ -1,8 +1,8 @@
 import type { Compiler } from 'webpack';
-import { NextFederationPluginExtraOptions } from '@module-federation/utilities';
 import { ChunkCorrelationPlugin } from '@module-federation/node';
 import InvertedContainerPlugin from '../container/InvertedContainerPlugin';
 import type { moduleFederationPlugin } from '@module-federation/sdk';
+import type { NextFederationPluginExtraOptions } from './next-fragments';
 
 /**
  * Applies client-specific plugins.
@@ -60,10 +60,5 @@ export function applyClientPlugins(
   }).apply(compiler);
 
   // Apply the InvertedContainerPlugin to add custom runtime modules to the container runtime
-  new InvertedContainerPlugin({
-    runtime: 'webpack',
-    container: options.name,
-    remotes: options.remotes as Record<string, string>,
-    debug: extraOptions.debug,
-  }).apply(compiler);
+  new InvertedContainerPlugin().apply(compiler);
 }

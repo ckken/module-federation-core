@@ -8,13 +8,13 @@ import {
   getWebpackPath,
   normalizeWebpackPath,
 } from '@module-federation/sdk/normalize-webpack-path';
+import { isRequiredVersion } from '@module-federation/sdk';
 import type { Compiler, Compilation } from 'webpack';
 import { parseOptions } from '../container/options';
 import { ConsumeOptions } from './ConsumeSharedModule';
 import { ConsumeSharedPluginOptions } from '../../declarations/plugins/sharing/ConsumeSharedPlugin';
 import { resolveMatchedConfigs } from './resolveMatchedConfigs';
 import {
-  isRequiredVersion,
   getDescriptionFile,
   getRequiredVersionFromDescriptionFile,
 } from './utils';
@@ -30,9 +30,6 @@ import FederationRuntimePlugin from '../container/runtime/FederationRuntimePlugi
 import ShareRuntimeModule from './ShareRuntimeModule';
 import type { SemVerRange } from 'webpack/lib/util/semver';
 
-const { parseRange } = require(
-  normalizeWebpackPath('webpack/lib/util/semver'),
-) as typeof import('webpack/lib/util/semver');
 const ModuleNotFoundError = require(
   normalizeWebpackPath('webpack/lib/ModuleNotFoundError'),
 ) as typeof import('webpack/lib/ModuleNotFoundError');
