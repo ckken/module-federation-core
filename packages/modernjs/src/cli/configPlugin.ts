@@ -130,7 +130,7 @@ export const moduleFederationConfigPlugin = (
             },
             enableAsyncEntry:
               bundlerType === 'rspack'
-                ? modernjsConfig.source?.enableAsyncEntry ?? true
+                ? (modernjsConfig.source?.enableAsyncEntry ?? true)
                 : modernjsConfig.source?.enableAsyncEntry,
           },
           dev: {
