@@ -43,10 +43,9 @@ jobs:
       - name: E2E Test for Modern.js SSR Data Loader
         if: steps.check-ci.outcome == 'success'
         run: |
-          lsof -ti tcp:3062,3061,3063,3064| xargs -r kill &&
-          pnpm run app:modern:dev &
-          sleep 1 &&
-          npx wait-on http://127.0.0.1:3062/ &&
+          lsof -ti tcp:3062,3061,3063,3064 | xargs -r kill &&
+          pnpm run app:modern:data-loader:dev &
+          npx wait-on http://127.0.0.1:3062/entry-one/nested-routes/pathname &&
           npx wait-on http://127.0.0.1:3061/ &&
           npx wait-on http://127.0.0.1:3063/ &&
           npx wait-on http://127.0.0.1:3064/ &&
