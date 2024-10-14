@@ -139,16 +139,34 @@ function addExpose(options: PatchMFConfigOptions) {
 }
 function addShared(options: PatchMFConfigOptions) {
   const { metaName, mfConfig } = options;
-  const alias = `@${metaName}/runtime/router`;
+  const reactRouterDom = `react-router-dom`;
+  const reactRouterDomServer = `react-router-dom/server`;
   if (!mfConfig.shared) {
     mfConfig.shared = {
-      [alias]: { singleton: true },
+      [reactRouterDom]: { singleton: true },
+      [reactRouterDomServer]: { singleton: true },
     };
   } else {
     if (!Array.isArray(mfConfig.shared)) {
-      mfConfig.shared[alias] = { singleton: true };
+      mfConfig.shared[reactRouterDom] = { singleton: true };
+      mfConfig.shared[reactRouterDomServer] = { singleton: true };
     } else {
-      mfConfig.shared.push(alias);
+      mfConfig.shared = mfConfig.shared.reduce(
+        (sum: moduleFederationPlugin.SharedObject, cur) => {
+          if (typeof cur === 'string') {
+            sum[cur] = {};
+          } else {
+            sum = {
+              ...sum,
+              ...cur,
+            };
+          }
+          return sum;
+        },
+        {} as moduleFederationPlugin.SharedObject,
+      );
+      mfConfig.shared[reactRouterDom] = { singleton: true };
+      mfConfig.shared[reactRouterDomServer] = { singleton: true };
     }
   }
 }

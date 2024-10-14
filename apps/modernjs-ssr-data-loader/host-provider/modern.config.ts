@@ -9,7 +9,8 @@ export default defineConfig({
 
   plugins: [
     appTools({
-      bundler: 'experimental-rspack',
+      // TODO: wait rspack fix react-router-dom shared issue to change bundler type as rspack
+      bundler: 'webpack',
     }),
     moduleFederationPlugin(),
   ],
