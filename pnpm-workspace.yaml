@@ -11,3 +11,4 @@ packages:
   - 'apps/esbuild'
   - 'apps/*'
   - 'webpack'
+  - 'packages/modernjs/__tests__/*'

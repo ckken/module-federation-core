@@ -1,7 +1,7 @@
 import { fs, normalizeToPosixPath } from '@modern-js/utils';
 import path from 'path';
 import os from 'os';
-import { MF_JSON, ROUTE_ID } from '../../constant';
+import { DEFAULT_ENTRY, MF_JSON, ROUTE_ID } from '../../constant';
 import { getRemoteLayoutId } from '../../runtime/dataLoader/utils';
 
 const ROUTES = 'routes';
@@ -31,7 +31,7 @@ export function calcPathName(filePath: string, rootDir: string, entry: string) {
     }
     return sum;
   }, [] as string[]);
-  return path.join(entry, splitPaths.filter((p) => !!p).join('/'));
+  return path.join('/', entry, splitPaths.filter((p) => !!p).join('/'));
 }
 
 export async function generateRouteFile(options: { appDirectory: string }) {
@@ -122,7 +122,7 @@ export async function generateRouteFile(options: { appDirectory: string }) {
   await traverseRoutes(srcPath);
   const normalizedEntries = entries.map((entry) => {
     if (entry === '') {
-      return 'main';
+      return DEFAULT_ENTRY;
     }
     return entry;
   });

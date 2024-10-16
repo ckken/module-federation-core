@@ -83,6 +83,7 @@
     "unplugin": "1.9.0"
   },
   "devDependencies": {
+    "cross-spawn": "^7.0.3",
     "@antora/cli": "3.1.9",
     "@antora/lunr-extension": "1.0.0-alpha.8",
     "@antora/site-generator": "3.1.9",

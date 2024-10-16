@@ -129,7 +129,7 @@ export const moduleFederationDataLoaderPlugin = (
         const prefix = transformName2Prefix(internalOptions.csrConfig!.name!);
         const modifyRouteIds = async (route: RouteObject, pathName: string) => {
           const currentPathName = route.path
-            ? path.join(pathName, route.path)
+            ? path.join('/', pathName, route.path)
             : pathName;
           if (route.id) {
             const originalId = route.id;
@@ -160,7 +160,10 @@ export const moduleFederationDataLoaderPlugin = (
         };
         await Promise.all(
           routes.map(async (route) => {
-            await modifyRouteIds(route, entryName);
+            await modifyRouteIds(
+              route,
+              entryName === DEFAULT_ENTRY ? '' : entryName,
+            );
           }),
         );
         return options;
