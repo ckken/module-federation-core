@@ -13,7 +13,7 @@ export default defineConfig({
   },
   plugins: [
     appTools({
-      bundler: 'webpack', // Set to 'webpack' to enable webpack
+      bundler: 'rspack',
     }),
     moduleFederationPlugin({
       dataLoader: true,
