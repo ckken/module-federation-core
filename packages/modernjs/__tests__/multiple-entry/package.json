@@ -1,6 +1,7 @@
 {
   "name": "@modern-js/test-multiple-entry",
   "version": "0.1.0",
+  "private": true,
   "scripts": {
     "dev": "modern dev",
     "build": "modern build"
