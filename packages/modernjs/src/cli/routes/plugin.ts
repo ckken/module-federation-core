@@ -18,6 +18,8 @@ import type {
 export const moduleFederationRoutesPlugin = ({
   userConfig,
   internalOptions,
+  serverPlugin,
+  transformRuntimeOptions,
 }: RoutesPluginOptions): CliPlugin<AppTools> => {
   const entries: Set<string> = new Set();
   const remotePathMap: Record<string, { name: string; path: string }> = {};
@@ -29,6 +31,8 @@ export const moduleFederationRoutesPlugin = ({
     entries,
     remotePathMap,
     ssrByRouteIdsMap,
+    serverPlugin,
+    transformRuntimeOptions,
   };
   return {
     name: '@modern-js/plugin-module-federation-route',
