@@ -10,20 +10,20 @@ title: "路由组件"
 
 ### 生产者
 
-在 `@module-federation/modern-js` 设置 `dataLoader: true`，即可自动把当前项目导出为路由组件。
+在 `@module-federation/modern-js` 设置 `exportRoutes: true`，即可自动导出路由组件。
 
 ```diff title="modern.config.ts"
 moduleFederationPlugin({
-+   dataLoader: true,
++   exportRoutes: true,
 })
 ```
 ### 消费者
 
-#### 1. 在 `@module-federation/modern-js` 设置 `dataLoader: true`
+#### 1. 在 `@module-federation/modern-js` 设置 `importRoutes: true`
 
 ```diff title="modern.config.ts"
 moduleFederationPlugin({
-+   dataLoader: true,
++   importRoutes: true,
 })
 ```
 

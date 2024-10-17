@@ -1,20 +1,21 @@
 ---
-title: "动态加载生产者"
+title: "Dynamic load provider"
 ---
 
-# 动态加载生产者
+# Dynamic load provider
 
-Modern.js 提供了 [Data Loader](https://modernjs.dev/guides/basic-features/data/data-fetch.html#data-loader%E6%8E%A8%E8%8D%90) 来帮助进行数据管理，`Data Loader` 仅在服务端执行，不会在客户端重复执行。
 
-本章节将介绍如何利用 `Data Loader` 获取生产者信息并动态加载。
+Modern.js provides [Data Loader](https://modernjs.dev/en/guides/basic-features/data/data-fetch.html#data-loader-recommended) to help For data management, `Data Loader` is only executed on the server side and will not be executed repeatedly on the client side.
 
-## 创建生产者
+This chapter will introduce how to use `Data Loader` to obtain producer information and load it dynamically.
 
-创建一个新的生产者，用于动态加载。
+## Create provider
 
-### 1. 创建配置文件
+Create a new provider for dynamic load.
 
-在项目根目录创建 `module-federation.config.ts` 文件，并写入下列内容：
+### 1. Create configuration file
+
+Create a `module-federation.config.ts` file in the project root directory and write the following content:
 
 ```ts title='module-federation.config.ts'
 import { createModuleFederationConfig } from '@module-federation/modern-js';
@@ -32,9 +33,9 @@ export default createModuleFederationConfig({
 });
 ```
 
-### 2. 应用插件
+### 2. Apply plugin
 
-在 `modern.config.ts` 应用 `@module-federation/modern-js`：
+Apply `@module-federation/modern-js` in `modern.config.ts`:
 
 ```ts title='modern.config.ts'
 import { appTools, defineConfig } from '@modern-js/app-tools';
@@ -55,9 +56,9 @@ export default defineConfig({
 });
 ```
 
-### 3. 创建导出组件
+### 3. Create need to be exposed component
 
-创建文件 `src/components/Image.tsx` ，内容如下：
+Create the file `src/components/Image.tsx` with the following content:
 
 ```tsx title='Image.tsx'
 import React from 'react';
@@ -92,16 +93,18 @@ export default (): JSX.Element => (
   </div>
 );
 ```
-并创建对应的样式文件，内容如下：
+
+And create the corresponding style file, the content is as follows:
+
 ```css title='Image.module.css'
 .button {
   background: red;
 }
 ```
 
-## 创建 loader
+## Create loader
 
-在对应的路由文件创建同名的 `.data` 文件，以根目录 `src/routes/page.tsx` 为例，创建 `src/routes/page.data.ts`：
+Create a `.data` file with the same name in the corresponding routing file. Taking the root directory `src/routes/page.tsx` as an example, create `src/routes/page.data.ts`:
 
 ```ts title='page.data.ts'
 import { LoaderFunctionArgs } from '@modern-js/runtime/router';
@@ -139,43 +142,54 @@ export const loader = async ({ request }: LoaderFunctionArgs): Promise<DataLoade
 };
 ```
 
-## 加载动态生产者
+## Load dynamic provider
 
-消费 loader 数据，并动态加载对应的生产者：
+Consume loader data and dynamically load the corresponding producer:
 
 ```tsx
 import { createRemoteSSRComponent, loadRemote, registerRemotes } from '@modern-js/runtime/mf';
-// 使用 import type ，仅获取类型
+// Use import type to get data loader types
 import type { DataLoaderRes } from './page.data';
 import { useLoaderData } from '@modern-js/runtime/router';
 
 import './index.css';
 
-const RemoteComponent = React.lazy(() =>
-  loadRemote('remote/Image').then((m) => {
-    return m;
-  }),
-);
+const RemoteSSRComponent = createRemoteSSRComponent({
+  loader: () => import('remote/Image'),
+  loading: 'loading...',
+  export: 'default',
+  fallback: ({ error }) => {
+    if (error instanceof Error && error.message.includes('not exist')) {
+      return <div>fallback - not existed id</div>;
+    }
+    return <div>fallback</div>;
+  },
+});
 
 const Index = () => {
-  // 获取 data loader 数据
+  // get data loader response
   const dataLoader = useLoaderData() as DataLoaderRes;
-  // 注册生产者信息
+  // register dynamic remotes before loading them
   registerRemotes(dataLoader.providerList);
 
-  const DynamicRemoteComponents = dataLoader.providerList.map(item => {
+  const DynamicRemoteSSRComponents = dataLoader.providerList.map(item => {
     const { id } = item;
-    const Com = React.lazy(() =>
-      loadRemote(id).then((m) => {
-        return m;
-      }),
-    );
+    const Com = createRemoteSSRComponent({
+      loader: () => loadRemote(id),
+      loading: 'loading...',
+      fallback: ({ error }) => {
+        if (error instanceof Error && error.message.includes('not exist')) {
+          return <div>fallback - not existed id</div>;
+        }
+        return <div>fallback</div>;
+      },
+    });
     return <Com />
-  });
+  })
   return (
     <div className="container-box">
-      <RemoteComponent />
-      {DynamicRemoteComponents}
+      <RemoteSSRComponent />
+      {DynamicRemoteSSRComponents}
     </div>
   );
 }
