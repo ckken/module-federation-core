@@ -29,7 +29,7 @@ export default (): JSX.Element => (
       style={{ width: '100px' }}
       alt="serge"
     />
-    <Button className={stuff['test-sub-provider']}>
+    <Button className={stuff['test-component-provider']}>
       Button from sub-provider
     </Button>
   </div>

@@ -1,4 +1,4 @@
-import type { CliPlugin, AppTools, webpack } from '@modern-js/app-tools';
+import type { CliPlugin, AppTools } from '@modern-js/app-tools';
 import {
   ModuleFederationPlugin as WebpackModuleFederationPlugin,
   AsyncBoundaryPlugin,
@@ -8,7 +8,7 @@ import type { moduleFederationPlugin as MFPluginOptions } from '@module-federati
 import type { PluginOptions, InternalModernPluginOptions } from '../types';
 import { moduleFederationConfigPlugin } from './configPlugin';
 import { moduleFederationSSRPlugin } from './ssrPlugin';
-import { moduleFederationDataLoaderPlugin } from './dataLoader/plugin';
+import { moduleFederationRoutesPlugin } from './routes/plugin';
 import { WebpackPluginType } from '../types/modern';
 
 export const moduleFederationPlugin = (
@@ -21,7 +21,7 @@ export const moduleFederationPlugin = (
     nodePlugin: undefined,
     distOutputDir: '',
     originPluginOptions: userConfig,
-    remoteIpStrategy: userConfig?.remoteIpStrategy,
+    remoteIpStrategy: undefined,
   };
 
   return {
@@ -81,15 +81,10 @@ export const moduleFederationPlugin = (
       moduleFederationSSRPlugin(
         internalModernPluginOptions as Required<InternalModernPluginOptions>,
       ),
-      moduleFederationDataLoaderPlugin(
-        Boolean(userConfig.dataLoader),
-        internalModernPluginOptions,
-        {
-          ...(typeof userConfig.dataLoader === 'boolean'
-            ? {}
-            : userConfig.dataLoader),
-        },
-      ),
+      moduleFederationRoutesPlugin({
+        userConfig,
+        internalOptions: internalModernPluginOptions,
+      }),
     ],
   };
 };

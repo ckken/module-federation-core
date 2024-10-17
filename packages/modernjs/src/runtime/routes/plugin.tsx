@@ -13,7 +13,7 @@ export const ssrDataLoaderPlugin = ({
   dataLoaderRemotes: string[];
 }): Plugin => {
   return {
-    name: '@modern-js/plugin-mf-data-loader',
+    name: '@modern-js/plugin-mf-routes',
     post: [`@${metaName}/plugin-router`, '@module-federation/modern-js'],
     setup: () => {
       const remoteRoutesMap: RemoteRoutesMap = {};

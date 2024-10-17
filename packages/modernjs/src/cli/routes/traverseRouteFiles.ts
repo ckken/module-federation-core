@@ -2,7 +2,7 @@ import { fs, normalizeToPosixPath } from '@modern-js/utils';
 import path from 'path';
 import os from 'os';
 import { DEFAULT_ENTRY, MF_JSON, ROUTE_ID } from '../../constant';
-import { getRemoteLayoutId } from '../../runtime/dataLoader/utils';
+import { getRemoteLayoutId } from '../../runtime/routes/utils';
 
 const ROUTES = 'routes';
 
@@ -34,10 +34,13 @@ export function calcPathName(filePath: string, rootDir: string, entry: string) {
   return path.join('/', entry, splitPaths.filter((p) => !!p).join('/'));
 }
 
-export async function generateRouteFile(options: { appDirectory: string }) {
-  const { appDirectory } = options;
+export async function traverseRouteFiles(options: {
+  appDirectory: string;
+  remotePathMap: Record<string, { name: string; path: string }>;
+  generateRouteFile?: boolean;
+}) {
+  const { appDirectory, generateRouteFile, remotePathMap } = options;
   const entries: string[] = [];
-  const remotePathMap: Record<string, { name: string; path: string }> = {};
   const srcPath = `${appDirectory}/src`;
 
   const traverse = async (filepath: string, rootDir: string, entry: string) => {
@@ -109,7 +112,9 @@ export async function generateRouteFile(options: { appDirectory: string }) {
       const entry = path.relative(srcPath, dir);
       entries.push(entry);
       const rootDir = `${dir}/${ROUTES}`;
-      await traverse(rootDir, rootDir, entry);
+      if (generateRouteFile) {
+        await traverse(rootDir, rootDir, entry);
+      }
     } else {
       await Promise.all(
         items.map(async (item) => {
@@ -128,6 +133,5 @@ export async function generateRouteFile(options: { appDirectory: string }) {
   });
   return {
     entries: normalizedEntries,
-    remotePathMap,
   };
 }

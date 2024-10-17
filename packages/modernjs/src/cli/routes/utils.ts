@@ -98,7 +98,7 @@ function generateExtraExposeFiles(options: PatchMFConfigOptions) {
     entryMap,
   };
 }
-function addExpose(options: PatchMFConfigOptions) {
+export function addExpose(options: PatchMFConfigOptions) {
   const { mfConfig, isServer } = options;
   const { entryMap } = generateExtraExposeFiles(options);
 
@@ -137,19 +137,22 @@ function addExpose(options: PatchMFConfigOptions) {
     );
   });
 }
-function addShared(options: PatchMFConfigOptions) {
-  const { metaName, mfConfig } = options;
+export function addShared(options: PatchMFConfigOptions) {
+  const { mfConfig } = options;
+  const styledComponents = `styled-components`;
   const reactRouterDom = `react-router-dom`;
   const reactRouterDomServer = `react-router-dom/server`;
   if (!mfConfig.shared) {
     mfConfig.shared = {
       [reactRouterDom]: { singleton: true },
       [reactRouterDomServer]: { singleton: true },
+      [styledComponents]: { singleton: true },
     };
   } else {
     if (!Array.isArray(mfConfig.shared)) {
       mfConfig.shared[reactRouterDom] = { singleton: true };
       mfConfig.shared[reactRouterDomServer] = { singleton: true };
+      mfConfig.shared[styledComponents] = { singleton: true };
     } else {
       mfConfig.shared = mfConfig.shared.reduce(
         (sum: moduleFederationPlugin.SharedObject, cur) => {
@@ -167,11 +170,7 @@ function addShared(options: PatchMFConfigOptions) {
       );
       mfConfig.shared[reactRouterDom] = { singleton: true };
       mfConfig.shared[reactRouterDomServer] = { singleton: true };
+      mfConfig.shared[styledComponents] = { singleton: true };
     }
   }
-}
-
-export function patchMFConfig(options: PatchMFConfigOptions) {
-  addShared(options);
-  addExpose(options);
 }

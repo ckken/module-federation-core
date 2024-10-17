@@ -13,19 +13,19 @@ function traverseRoutes(routes: RouteObject[], remoteNames: Set<string>) {
   });
 }
 
+// inject remote css assets
 export const ssrDataLoaderInjectAssetsPlugin = ({
   metaName,
 }: {
   metaName: string;
 }): Plugin => {
   return {
-    name: '@modern-js/plugin-mf-data-loader-inject-assets',
-    pre: ['@modern-js/plugin-mf-data-loader'],
+    name: '@modern-js/plugin-mf-routes-inject-assets',
+    pre: ['@modern-js/plugin-mf-routes'],
     post: ['@module-federation/modern-js', `@${metaName}/plugin-router`],
     setup: () => {
       return {
-        wrapRoot(App) {
-          // return App;
+        wrapRoot() {
           const AppWrapper = (props: any) => {
             const instance = getInstance();
             if (!instance || !instance.options.remotes.length) {

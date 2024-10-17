@@ -9,7 +9,7 @@ import {
   type LoaderBundlesRoutes,
   type NestedRoutes,
   injectRemoteRoutes,
-} from '../../runtime/dataLoader/utils';
+} from '../../runtime/routes/utils';
 
 import {
   MF_ROUTES,
@@ -19,7 +19,7 @@ import {
 
 type MFRuntimeOptions = Parameters<typeof init>[0];
 
-export type DataLoaderServerPluginOptions = {
+export type FetchRouteServerPluginOptions = {
   runtimeOptions: MFRuntimeOptions;
   dataLoaderRemotes: string[];
   ssrByRouteIdsMap: Record<string, string>;
@@ -29,8 +29,8 @@ export default ({
   runtimeOptions,
   dataLoaderRemotes,
   ssrByRouteIdsMap,
-}: DataLoaderServerPluginOptions): ServerPlugin => ({
-  name: 'MFDataLoaderServerPlugin',
+}: FetchRouteServerPluginOptions): ServerPlugin => ({
+  name: '@module-federation/modern-js-fetch-route',
   pre: ['@modern-js/plugin-inject-resource'],
   setup(api) {
     const { remotes, name } = runtimeOptions;
@@ -43,6 +43,7 @@ export default ({
           handler: async (c, next) => {
             const serverManifest = c.get('serverManifest');
             const { loaderBundles, nestedRoutesJson } = serverManifest;
+
             if (isHandled && !globalThis.FORCE_MF_REFRESH) {
               await next();
             } else {

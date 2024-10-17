@@ -1,13 +1,12 @@
 import { moduleFederationPlugin } from '@module-federation/sdk';
 import type { ModuleFederationPlugin as WebpackModuleFederationPlugin } from '@module-federation/enhanced';
 import type { ModuleFederationPlugin as RspackModuleFederationPlugin } from '@module-federation/enhanced/rspack';
-import type { init } from '@module-federation/enhanced/runtime';
 
 export interface PluginOptions {
   config?: moduleFederationPlugin.ModuleFederationPluginOptions;
   configPath?: string;
-  remoteIpStrategy?: 'ipv4' | 'inherit';
-  dataLoader?: boolean | DataLoaderOptions;
+  exportRoutes?: boolean;
+  importRoutes?: boolean;
 }
 
 export interface InternalModernPluginOptions {
@@ -23,12 +22,3 @@ export interface InternalModernPluginOptions {
 export type BundlerPlugin =
   | WebpackModuleFederationPlugin
   | RspackModuleFederationPlugin;
-
-export type TransformRuntimeOptions = (
-  mfConfig: moduleFederationPlugin.ModuleFederationPluginOptions,
-) => Parameters<typeof init>[0];
-
-export type DataLoaderOptions = {
-  serverPlugin?: string;
-  transformRuntimeOptions?: TransformRuntimeOptions;
-};

@@ -83,6 +83,33 @@ export default createModuleFederationConfig({
 }
 ```
 
+## 配置
+
+### config
+
+- 类型：`moduleFederationPlugin.ModuleFederationPluginOptions`
+- 是否必填：否
+- 默认值：`undefined`
+
+默认 `@module-federation/modern-js` 会自动加载 `module-federation.config.ts` 里的配置文件。如果配置了 `config` ，那么会优先使用此配置文件。
+
+
+### configPath
+
+- 类型：`string`
+- 是否必填：否
+- 默认值：`path.resolve(process.cwd(), 'module-federation.config.ts');`
+
+指定配置文件路径，必须为绝对路径。
+
+### dataLoader
+
+- 类型：`boolean | DataLoaderOptions`
+- 是否必填：否
+- 默认值：`undefined`
+
+设置后将自动导出
+
 ## 服务端渲染（SSR）
 
 :::info 注意
@@ -180,3 +207,8 @@ export default Product;
 当组件**加载**或**渲染**失败时，所渲染的容错组件。
 
 注意：当**渲染**失败的时候，该组件仅在客户端渲染此 容错组件。
+
+
+## 路由组件
+
+### withMFRouteId
