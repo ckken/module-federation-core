@@ -19,6 +19,7 @@
         ],
         "tsConfig": "packages/runtime/tsconfig.lib.json",
         "assets": [],
+        "external": ["@module-federation/*"],
         "project": "packages/runtime/package.json",
         "compiler": "swc",
         "rollupConfig": "packages/runtime/rollup.config.js",
@@ -32,7 +33,7 @@
       ]
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
