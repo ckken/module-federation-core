@@ -1,4 +1,6 @@
 {
+  "biome.enabled": false,
+  "eslint.enable": false,
   "diffEditor.wordWrap": "on",
   "editor.rename.enablePreview": false
 }
