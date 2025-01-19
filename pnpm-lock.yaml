@@ -2173,6 +2173,9 @@ importers:
 
   packages/enhanced:
     dependencies:
+      '@empjs/module-federation-runtime':
+        specifier: 0.8.9-emp.1
+        version: 0.8.9-emp.1
       '@module-federation/bridge-react-webpack-plugin':
         specifier: workspace:*
         version: link:../bridge/bridge-react-webpack-plugin
@@ -7196,6 +7199,14 @@ packages:
     resolution: {integrity: sha512-snKqtPW01tN0ui7yu9rGv69aJXr/a/Ywvl11sUjNtEcRc+ng/mQriFL0wLXMef74iHa/EkftbDzU9F8iFbH+zg==}
     dev: false
 
+  /@empjs/module-federation-runtime@0.8.9-emp.1:
+    resolution: {integrity: sha512-4enF8P6/KrK0oAK85wWhyst3C3HLD7FJnEEK0tdiUxjvTgA1g/VZztOjB6TVcUEtFOviYUsbE91nNRWxps3yCg==}
+    dependencies:
+      '@module-federation/error-codes': 0.8.9
+      '@module-federation/runtime-core': 0.6.17
+      '@module-federation/sdk': 0.8.9
+    dev: false
+
   /@esbuild/aix-ppc64@0.20.2:
     resolution: {integrity: sha512-D+EBOJHXdNZcLJRBkhENNG8Wji2kgc9AZ9KiPr1JuZjsNtyHzrsfLRrY0tk2H2aoFu6RANO1y1iPPUCDYWkb5g==}
     engines: {node: '>=12'}
@@ -11229,6 +11240,10 @@ packages:
     resolution: {integrity: sha512-c38UWAIeK7n7MihCD4fnvD7/Bdh6G2jCwyF+bzold8BYFmId/ck2+tvRoX7qX6qeftWJr61PBfJceffozujG0w==}
     dev: true
 
+  /@module-federation/error-codes@0.8.9:
+    resolution: {integrity: sha512-yUA3GZjOy8Ll6l193faXir2veexDaUiLdmptbzC9tIee/iSQiSwIlibdTafCfqaJ62cLZaytOUdmAFAKLv8QQw==}
+    dev: false
+
   /@module-federation/managers@0.6.11:
     resolution: {integrity: sha512-HVw9eFTHCegRlWSmNbHXAnY19XHSj19RHHpjZ1Oo71DaHgjJAPJlg4izifcdWt0w+ObAQLOH1DacjYKMIT4W6Q==}
     dependencies:
@@ -11465,6 +11480,13 @@ packages:
       - utf-8-validate
     dev: true
 
+  /@module-federation/runtime-core@0.6.17:
+    resolution: {integrity: sha512-PXFN/TT9f64Un6NQYqH1Z0QLhpytW15jkZvTEOV8W7Ed319BECFI0Rv4xAsAGa8zJGFoaM/c7QOQfdFXtKj5Og==}
+    dependencies:
+      '@module-federation/error-codes': 0.8.9
+      '@module-federation/sdk': 0.8.9
+    dev: false
+
   /@module-federation/runtime-tools@0.0.8:
     resolution: {integrity: sha512-tqx3wlVHnpWLk+vn22c0x9Nv1BqdZnoS6vdMb53IsVpbQIFP70nhhvymHUyFuPkoLzMFidS7GpG58DYT/4lvCw==}
     dependencies:
@@ -11583,6 +11605,12 @@ packages:
     dependencies:
       isomorphic-rslog: 0.0.6
     dev: true
+
+  /@module-federation/sdk@0.8.9:
+    resolution: {integrity: sha512-QJ60itWC/SPjqduT7wDiF8UGwVU/yJ/Sz+QbnoxB9b7gNLzvI//swAXTo9eOtKsCy/V2BMwjt0F3eOcfnaqllA==}
+    dependencies:
+      isomorphic-rslog: 0.0.7
+    dev: false
 
   /@module-federation/third-party-dts-extractor@0.6.11:
     resolution: {integrity: sha512-KEHF71/qmEhME1XK/0XpMHKaSRjwmINpul9iu5Z4UBNtoMIydq6SH41DsWF3HxAManhqe+ZwCxyoSn2Yxm5d0Q==}
@@ -31891,8 +31919,6 @@ packages:
       webpack: '*'
     peerDependenciesMeta:
       webpack:
-        optional: true
-      webpack-sources:
         optional: true
     dependencies:
       webpack: 5.93.0(@swc/core@1.7.26)(esbuild@0.24.0)
