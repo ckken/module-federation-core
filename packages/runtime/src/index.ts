@@ -20,6 +20,11 @@ export type { FederationRuntimePlugin };
 let FederationInstance: FederationHost | null = null;
 export function init(options: UserOptions): FederationHost {
   // Retrieve the same instance with the same name
+  if (FederationInstance) {
+    // 如果已经存在实例，则直接注册远程
+    FederationInstance.registerRemotes(options.remotes);
+    return FederationInstance;
+  }
   const instance = getGlobalFederationInstance(options.name, options.version);
   if (!instance) {
     // Retrieve debug constructor
