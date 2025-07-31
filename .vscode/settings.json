@@ -2,5 +2,6 @@
   "biome.enabled": false,
   "eslint.enable": true,
   "diffEditor.wordWrap": "on",
-  "editor.rename.enablePreview": false
+  "editor.rename.enablePreview": false,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

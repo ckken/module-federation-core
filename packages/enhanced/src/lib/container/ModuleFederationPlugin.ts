@@ -155,7 +155,8 @@ class ModuleFederationPlugin implements WebpackPluginInstance {
     });
 
     if (!disableManifest) {
-      const pkg = require('../../../../package.json');
+      // const pkg = require('../../../../package.json');
+      const pkg = require('../../../package.json');
       this._statsPlugin = new StatsPlugin(options, {
         pluginVersion: pkg.version,
         bundler: 'webpack',
