@@ -1,6 +1,6 @@
 {
-  "name": "@empjs/module-federation-runtime",
-  "version": "0.6.10-emp.2",
+  "name": "@module-federation/runtime",
+  "version": "0.6.10",
   "maintainers": [
     "ckken@qq.com"
   ],

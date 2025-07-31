@@ -212,7 +212,8 @@ export function error(msg: string | Error | unknown): never {
 }
 
 export function isDev(): boolean {
-  return process.env['NODE_ENV'] === 'development';
+  // return process.env['NODE_ENV'] === 'development';
+  return false;
 }
 
 export function getFileNameWithOutExt(str: string): string {
