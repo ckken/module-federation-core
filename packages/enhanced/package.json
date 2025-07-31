@@ -1,6 +1,6 @@
 {
   "name": "@module-federation/enhanced",
-  "version": "0.6.10",
+  "version": "0.6.10-rc.1",
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
   "repository": "https://github.com/module-federation/core/tree/main/packages/enhanced",
@@ -53,6 +53,11 @@
       "types": "./dist/prefetch.d.ts",
       "import": "./dist/prefetch.mjs",
       "require": "./dist/prefetch.js"
+    },
+    "./sdk": {
+      "types": "./dist/sdk.d.ts",
+      "import": "./dist/sdk.mjs",
+      "require": "./dist/sdk.js"
     }
   },
   "typesVersions": {
@@ -71,6 +76,9 @@
       ],
       "prefetch": [
         "./dist/prefetch.d.ts"
+      ],
+      "sdk": [
+        "./dist/sdk.d.ts"
       ]
     }
   },
