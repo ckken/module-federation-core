@@ -29,3 +29,6 @@ export * as types from './type';
 export { helpers };
 export { satisfy } from '../src/utils/semver';
 export type { IGlobalUtils, IShareUtils };
+
+// Default export
+export { ModuleFederation as default } from './core';

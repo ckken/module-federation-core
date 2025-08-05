@@ -1,6 +1,6 @@
 /*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra and Zackary Jackson @ScriptedAlchemy
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra and Zackary Jackson @ScriptedAlchemy
 */
 
 'use strict';
@@ -220,7 +220,7 @@ class ModuleFederationPlugin implements WebpackPluginInstance {
     });
 
     if (!disableManifest) {
-      const pkg = require('../../../../package.json');
+      const pkg = require('../../../package.json');
       this._statsPlugin = new StatsPlugin(options, {
         pluginVersion: pkg.version,
         bundler: 'webpack',

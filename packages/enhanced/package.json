@@ -61,6 +61,11 @@
       "types": "./dist/src/prefetch.d.ts",
       "import": "./dist/src/prefetch.js",
       "require": "./dist/src/prefetch.js"
+    },
+    "./sdk": {
+      "types": "./dist/src/sdk.d.ts",
+      "import": "./dist/src/sdk.js",
+      "require": "./dist/src/sdk.js"
     }
   },
   "typesVersions": {
@@ -79,15 +84,23 @@
       ],
       "prefetch": [
         "./dist/src/prefetch.d.ts"
+      ],
+      "sdk": [
+        "./dist/src/sdk.d.ts"
       ]
     }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
   },
   "devDependencies": {
     "@module-federation/webpack-bundler-runtime": "workspace:*",
     "@types/btoa": "^1.2.5",
     "ajv": "^8.17.1",
     "enhanced-resolve": "^5.0.0",
-    "terser": "^5.37.0"
+    "terser": "^5.37.0",
+    "tsup": "*"
   },
   "dependencies": {
     "@module-federation/bridge-react-webpack-plugin": "workspace:*",
