@@ -29,9 +29,6 @@ export default defineConfig(({ watch }) => {
       '@module-federation/managers',
       '@module-federation/rspack',
       '@module-federation/runtime',
-      '@module-federation/data-prefetch',
-      '@module-federation/bridge-react-webpack-plugin',
-      // '@module-federation/dts-plugin'
     ],
     // external: ['typescript'],
     format: ['cjs', 'esm'],
@@ -49,7 +46,7 @@ export default defineConfig(({ watch }) => {
         '✅ Enhanced package built successfully with all dependencies bundled!',
       );
     },
-    esbuildOptions(options: any, context) {
+    esbuildOptions(options: any) {
       options.logOverride = {
         'direct-eval': 'silent',
         'package.json': 'silent',
