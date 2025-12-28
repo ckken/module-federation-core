@@ -52,9 +52,10 @@ class DTSManager {
   constructor(options: DTSManagerOptions) {
     this.options = cloneDeepOptions(options);
     this.runtimePkgs = [
-      '@module-federation/runtime',
-      '@module-federation/enhanced/runtime',
-      '@module-federation/runtime-tools',
+      // '@module-federation/runtime',
+      // '@module-federation/enhanced/runtime',
+      // '@module-federation/runtime-tools',
+      '@empjs/share/sdk',
     ];
     this.loadedRemoteAPIAlias = new Set();
     this.remoteAliasMap = {};
