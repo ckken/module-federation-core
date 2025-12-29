@@ -56,6 +56,7 @@ class DTSManager {
       // '@module-federation/enhanced/runtime',
       // '@module-federation/runtime-tools',
       '@empjs/share/sdk',
+      '@nova/web/share',
     ];
     this.loadedRemoteAPIAlias = new Set();
     this.remoteAliasMap = {};

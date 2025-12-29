@@ -1,6 +1,6 @@
 {
-  "name": "@module-federation/rspack",
-  "version": "0.22.0",
+  "name": "@empjs/module-federation-rspack",
+  "version": "0.22.5",
   "license": "MIT",
   "keywords": [
     "Module Federation",
@@ -26,7 +26,7 @@
   "dependencies": {
     "btoa": "1.2.1",
     "@module-federation/bridge-react-webpack-plugin": "workspace:*",
-    "@module-federation/dts-plugin": "workspace:*",
+    "@module-federation/dts-plugin": "npm:@empjs/module-federation-dts-plugin",
     "@module-federation/managers": "workspace:*",
     "@module-federation/manifest": "workspace:*",
     "@module-federation/runtime-tools": "workspace:*",

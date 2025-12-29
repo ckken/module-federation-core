@@ -1,6 +1,6 @@
 {
-  "name": "@empjs/module-federation-dts-plugin",
-  "version": "0.22.0",
+  "name": "@module-federation/dts-plugin",
+  "version": "0.22.5",
   "author": "hanric <hanric.zhang@gmail.com>",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -85,6 +85,7 @@
     }
   },
   "scripts": {
-    "dev": "tsup --watch"
+    "dev": "tsup --watch",
+    "build": "tsup"
   }
 }
