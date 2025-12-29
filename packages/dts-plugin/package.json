@@ -83,5 +83,8 @@
     "vue-tsc": {
       "optional": true
     }
+  },
+  "scripts": {
+    "dev": "tsup --watch"
   }
 }
